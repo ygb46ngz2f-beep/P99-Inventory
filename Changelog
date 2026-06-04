@@ -1,0 +1,29 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+
+### Added
+- Added a desktop Tkinter app for importing Project 1999 inventory `.txt` files into Excel.
+- Added support for importing multiple files into one workbook.
+- Added one worksheet per imported file.
+- Added an Item Summary sheet that combines matching items across all imported files.
+- Added Project 1999 wiki links for item names.
+- Added default keyword highlighting for Crown, Throne, Squire, and Knight.
+- Added support for custom highlight keywords in the app UI.
+- Added batch files for running the app directly and building console/windowed executables.
+
+### Changed
+- Changed re-import behavior so existing sheets are replaced instead of duplicated.
+- Changed row highlighting to apply across the full row instead of only one cell.
+- Changed summary ordering so highlighted items appear at the top.
+- Changed the summary sheet to also use keyword-based highlighting.
+- Changed workbook writing logic to rebuild the summary sheet on each import.
+
+### Fixed
+- Fixed row highlight offset issues where formatting appeared on the wrong row.
+- Fixed missing highlighting on the Item Summary sheet.
+- Fixed duplicate Excel table-name collisions by generating unique workbook-wide table names.
+- Fixed repeated import issues when files with existing sheet names were added again.
+- Fixed packaging workflow by providing separate debug and windowed build scripts for PyInstaller.
