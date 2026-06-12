@@ -1,0 +1,12 @@
+from pathlib import Path
+src = Path('output/p99_inventory_app_wtb_30d_only.py').read_text(encoding='utf-8')
+src = src.replace("'wtb_30d_avg': row.get('a30', '') if type_name == 'WTB' else '',", "'wts_30d_avg': row.get('a30', '') if type_name == 'WTS' else '',")
+src = src.replace("headers = ['PigParse Link', 'WTB 30d Avg']", "headers = ['PigParse Link', 'WTS 30d Avg']")
+src = src.replace("p.get('wtb_30d_avg', '')", "p.get('wts_30d_avg', '')")
+src = src.replace("This version only imports PigParse WTB 30-day average price. It waits 20 seconds before downloading the JSON URL and writes only PigParse Link and WTB 30d Avg into Excel.", "This version only imports PigParse WTS 30-day average price. It waits 20 seconds before downloading the JSON URL and writes only PigParse Link and WTS 30d Avg into Excel.")
+Path('output/p99_inventory_app_wts_30d_only.py').write_text(src, encoding='utf-8')
+Path('output/Run-P99-Inventory-App-WTS-30d-Only.bat').write_text('@echo off\ncd /d "%~dp0"\npython "%~dp0p99_inventory_app_wts_30d_only.py"\nif errorlevel 1 py "%~dp0p99_inventory_app_wts_30d_only.py"\npause\n', encoding='utf-8')
+Path('output/build_console_exe_wts_30d_only.bat').write_text('@echo off\ncd /d "%~dp0"\npy -m pip install pyinstaller openpyxl requests\npy -m PyInstaller --onefile --console --noupx p99_inventory_app_wts_30d_only.py\npause\n', encoding='utf-8')
+Path('output/build_windowed_exe_wts_30d_only.bat').write_text('@echo off\ncd /d "%~dp0"\npy -m pip install pyinstaller openpyxl requests\npy -m PyInstaller --onefile --windowed --noupx p99_inventory_app_wts_30d_only.py\npause\n', encoding='utf-8')
+Path('output/README-P99-WTS-30d-Only.txt').write_text('This version only imports PigParse WTS 30-day average price. It waits 20 seconds before downloading the JSON URL and writes only PigParse Link and WTS 30d Avg into Excel.', encoding='utf-8')
+print('ok')

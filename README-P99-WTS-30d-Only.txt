@@ -1,0 +1,1 @@
+This version only imports PigParse WTS 30-day average price. It waits 20 seconds before downloading the JSON URL and writes only PigParse Link and WTS 30d Avg into Excel.
